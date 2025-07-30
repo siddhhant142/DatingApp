@@ -14,6 +14,10 @@ const Navbar = () => {
     try {
       await axios.post( "https://datingapp-backend-pdji.onrender.com/logout", {}, { withCredentials: true ,
 
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+
 
       });
       dispatch(removeUser()); //removeUser() from userSlice

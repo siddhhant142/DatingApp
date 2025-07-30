@@ -18,6 +18,10 @@ const Body = () => {
     try {
       const user = await axios.get( "https://datingapp-backend-pdji.onrender.com/profile/view", {
         withCredentials: true,
+
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
       });
       // console.log(user.data);
       dispatch(addUser(user.data)); 

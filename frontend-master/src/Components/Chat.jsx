@@ -19,6 +19,10 @@ const Chat = () => {
       const response = await axios.get(`${BASE_URL}/chat/${targetUserId}`, {
         withCredentials: true,
 
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+
 
       });
 

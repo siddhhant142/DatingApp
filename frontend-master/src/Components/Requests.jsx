@@ -14,7 +14,12 @@ const Requests = () => {
       const res = await axios.post(
          "https://datingapp-backend-pdji.onrender.com/request/review" + "/" + status + "/" + _id,
         {},
-        { withCredentials: true }
+        { withCredentials: true,
+          headers: {
+          Authorization: `Bearer ${token}`,
+        }
+
+         }
       );
       dispatch(removeRequest(_id));
     } catch (error) {
@@ -27,7 +32,9 @@ const Requests = () => {
       const requests = await axios.get( "https://datingapp-backend-pdji.onrender.com/user/requests/recieved", {
         withCredentials: true,
 
-    
+      headers: {
+          Authorization: `Bearer ${token}`,
+        },
 
       });
       dispatch(addRequests(requests.data.connectionRequests)); //updating store through addRequests function by requestSlice

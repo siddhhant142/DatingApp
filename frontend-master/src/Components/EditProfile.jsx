@@ -34,7 +34,9 @@ const EditProfile = ({ user }) => {
         },
         {
           withCredentials: true,
-
+           headers: {
+          Authorization: `Bearer ${token}`,
+        }
     
         }
       );

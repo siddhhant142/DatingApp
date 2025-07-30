@@ -57,6 +57,9 @@ const Login = () => {
         },
         {
           withCredentials: true,
+          headers: {
+          Authorization: `Bearer ${token}`,
+        }
         }
       );
       dispatch(addUser(res.data.data));

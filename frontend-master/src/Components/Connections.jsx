@@ -18,6 +18,10 @@ const Connections = () => {
       const connections = await axios.get( "https://datingapp-backend-pdji.onrender.com/user/connections", {
         withCredentials: true,
 
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+
    
       });
       dispatch(addConnection(connections.data.data)); //adding connections data through addconnections function in store though connection slice
