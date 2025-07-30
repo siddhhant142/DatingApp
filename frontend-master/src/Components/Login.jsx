@@ -29,10 +29,7 @@ const Login = () => {
           password,
         },
         { withCredentials: true, 
-          
-     headers: {
-      Authorization: `Bearer ${yourToken}`
-    }
+     
          }
       );
       dispatch(addUser(res.data.user));

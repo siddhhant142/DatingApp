@@ -20,10 +20,7 @@ const UserCard = ({ user }) => {
         {
           withCredentials: true,
 
-          
-        headers: {
-      Authorization: `Bearer ${yourToken}`
-    }
+      
           
         }
       );

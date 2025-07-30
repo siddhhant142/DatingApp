@@ -15,10 +15,7 @@ const Feed = () => {
       const feed = await axios.get( "https://datingapp-backend-pdji.onrender.com/user/feed", {
         withCredentials: true,
 
-      
-    headers: {
-      Authorization: `Bearer ${yourToken}`
-    }
+    
 
       });
       dispatch(addFeed(feed.data)); //adding data in store through addFeed function through feedSlice store
