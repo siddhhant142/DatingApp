@@ -28,7 +28,12 @@ const Login = () => {
           emailId,
           password,
         },
-        { withCredentials: true }
+        { withCredentials: true, 
+          
+     headers: {
+      Authorization: `Bearer ${yourToken}`
+    }
+         }
       );
       dispatch(addUser(res.data.user));
       navigate("/user/feed");

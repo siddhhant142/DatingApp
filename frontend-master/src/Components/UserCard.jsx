@@ -19,6 +19,12 @@ const UserCard = ({ user }) => {
         {},
         {
           withCredentials: true,
+
+          
+        headers: {
+      Authorization: `Bearer ${yourToken}`
+    }
+          
         }
       );
       dispatch(removeUserFromFeed(userId));

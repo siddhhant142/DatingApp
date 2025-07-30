@@ -12,7 +12,13 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post( "https://datingapp-backend-pdji.onrender.com/logout", {}, { withCredentials: true });
+      await axios.post( "https://datingapp-backend-pdji.onrender.com/logout", {}, { withCredentials: true ,
+
+        
+    headers: {
+      Authorization: `Bearer ${yourToken}`
+    }
+      });
       dispatch(removeUser()); //removeUser() from userSlice
       dispatch(removeFeed()); //removeFeed() from feedSlice we are basicallly updating our store
       navigate("/login");

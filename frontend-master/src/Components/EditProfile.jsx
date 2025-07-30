@@ -34,6 +34,11 @@ const EditProfile = ({ user }) => {
         },
         {
           withCredentials: true,
+
+          
+    headers: {
+      Authorization: `Bearer ${yourToken}`
+    }
         }
       );
       dispatch(addUser(res.data.data)); //updating store through addUser function in userSlice
