@@ -16,7 +16,7 @@ const Body = () => {
   //  profile/view gives me information about loggedin user
   const fetchUser = async () => {
     try {
-      const user = await axios.get( "http://localhost:3002/profile/view", {
+      const user = await axios.get( "https://datingapp-backend-pdji.onrender.com/profile/view", {
         withCredentials: true,
       });
       // console.log(user.data);

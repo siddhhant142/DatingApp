@@ -15,7 +15,7 @@ const UserCard = ({ user }) => {
   const handleSendRequest = async (status, userId) => {
     try {
       const res = await axios.post(
-        "http://localhost:3002/request/send/" + status + "/" + userId,
+        "https://datingapp-backend-pdji.onrender.com/request/send/" + status + "/" + userId,
         {},
         {
           withCredentials: true,

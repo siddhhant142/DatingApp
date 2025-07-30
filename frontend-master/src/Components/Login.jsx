@@ -23,7 +23,7 @@ const Login = () => {
     
     try {
       const res = await axios.post(
-         "http://localhost:3002/login",
+         "https://datingapp-backend-pdji.onrender.com/login",
         {
           emailId,
           password,
@@ -46,7 +46,7 @@ const Login = () => {
     
     try {
       const res = await axios.post(
-         "http://localhost:3002/signup",
+         "https://datingapp-backend-pdji.onrender.com/signup",
         {
           firstName,
           lastName,

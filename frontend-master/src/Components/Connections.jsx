@@ -15,7 +15,7 @@ const Connections = () => {
   const fetchConnections = async () => {
     try {
       
-      const connections = await axios.get( "http://localhost:3002/user/connections", {
+      const connections = await axios.get( "https://datingapp-backend-pdji.onrender.com/user/connections", {
         withCredentials: true,
       });
       dispatch(addConnection(connections.data.data)); //adding connections data through addconnections function in store though connection slice

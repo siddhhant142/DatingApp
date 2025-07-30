@@ -22,7 +22,7 @@ const EditProfile = ({ user }) => {
     setError("");
     try {
       const res = await axios.post(
-         "http://localhost:3002/profile/edit",
+         "https://datingapp-backend-pdji.onrender.com/profile/edit",
         {
           firstName,
           lastName,

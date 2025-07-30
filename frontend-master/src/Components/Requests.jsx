@@ -12,7 +12,7 @@ const Requests = () => {
   const reviewRequest = async (status, _id) => {
     try {
       const res = await axios.post(
-         "http://localhost:3002/request/review" + "/" + status + "/" + _id,
+         "https://datingapp-backend-pdji.onrender.com/request/review" + "/" + status + "/" + _id,
         {},
         { withCredentials: true }
       );
@@ -24,7 +24,7 @@ const Requests = () => {
 
   const fetchRequests = async () => {
     try {
-      const requests = await axios.get( "http://localhost:3002/user/requests/recieved", {
+      const requests = await axios.get( "https://datingapp-backend-pdji.onrender.com/user/requests/recieved", {
         withCredentials: true,
       });
       dispatch(addRequests(requests.data.connectionRequests)); //updating store through addRequests function by requestSlice

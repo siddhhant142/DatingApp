@@ -15,7 +15,7 @@ const Chat = () => {
 
   const fetchChatMessages = async () => {
     try {
-         const BASE_URL="http://localhost:3002";
+         const BASE_URL="https://datingapp-backend-pdji.onrender.com";
       const response = await axios.get(`${BASE_URL}/chat/${targetUserId}`, {
         withCredentials: true,
       });

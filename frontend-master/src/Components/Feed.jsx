@@ -12,7 +12,7 @@ const Feed = () => {
   const getFeed = async () => {
     if (feed) return;
     try {
-      const feed = await axios.get( "http://localhost:3002/user/feed", {
+      const feed = await axios.get( "https://datingapp-backend-pdji.onrender.com/user/feed", {
         withCredentials: true,
       });
       dispatch(addFeed(feed.data)); //adding data in store through addFeed function through feedSlice store
