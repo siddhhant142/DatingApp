@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 
-
 const Chat = () => {
   const { targetUserId } = useParams();
   const [messages, setMessages] = useState([]);
@@ -15,22 +14,19 @@ const Chat = () => {
 
   const fetchChatMessages = async () => {
     try {
-         const BASE_URL="https://datingapp-backend-pdji.onrender.com";
+      const token = localStorage.getItem("token"); // ✅ Fetch token
       const response = await axios.get(`${BASE_URL}/chat/${targetUserId}`, {
-        withCredentials: true,
-
         headers: {
           Authorization: `Bearer ${token}`,
-        }
-
-
+        },
       });
 
-      const chatMessages = response?.data?.messages?.map((msg) => ({
-        firstName: msg.senderId?.firstName,
-        lastName: msg.senderId?.lastName,
-        text: msg.text,
-      })) || [];
+      const chatMessages =
+        response?.data?.messages?.map((msg) => ({
+          firstName: msg.senderId?.firstName,
+          lastName: msg.senderId?.lastName,
+          text: msg.text,
+        })) || [];
 
       setMessages(chatMessages);
     } catch (error) {
@@ -46,7 +42,7 @@ const Chat = () => {
     if (!userId) return;
 
     const socket = createSocketConnection();
-    
+
     socket.emit("joinChat", {
       firstName: user.firstName,
       userId,
@@ -54,7 +50,10 @@ const Chat = () => {
     });
 
     socket.on("messageReceived", ({ firstName, lastName, text }) => {
-      setMessages((prevMessages) => [...prevMessages, { firstName, lastName, text }]);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { firstName, lastName, text },
+      ]);
     });
 
     return () => {
@@ -89,7 +88,9 @@ const Chat = () => {
         {messages.map((msg, index) => (
           <div
             key={index}
-            className={`chat ${user.firstName === msg.firstName ? "chat-end" : "chat-start"}`}
+            className={`chat ${
+              user.firstName === msg.firstName ? "chat-end" : "chat-start"
+            }`}
           >
             <div className="chat-header">
               {`${msg.firstName} ${msg.lastName}`}
@@ -108,8 +109,8 @@ const Chat = () => {
           className="flex-1 border border-gray-500 text-white rounded p-2 bg-transparent"
           placeholder="Type a message..."
         />
-        <button 
-          onClick={sendMessage} 
+        <button
+          onClick={sendMessage}
           className="btn btn-secondary"
           disabled={!newMessage.trim()}
         >

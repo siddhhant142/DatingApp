@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
@@ -20,18 +20,22 @@ const Login = () => {
       setError("Email and password are required");
       return;
     }
-    
+
     try {
       const res = await axios.post(
-         "https://datingapp-backend-pdji.onrender.com/login",
+        `${BASE_URL}/login`,
         {
           emailId,
           password,
         },
-        { withCredentials: true, 
-     
-         }
+        {
+          withCredentials: true,
+        }
       );
+
+      // ✅ Save token to localStorage
+      localStorage.setItem("token", res.data.token);
+
       dispatch(addUser(res.data.user));
       navigate("/user/feed");
     } catch (err) {
@@ -45,10 +49,10 @@ const Login = () => {
       setError("All fields are required");
       return;
     }
-    
+
     try {
       const res = await axios.post(
-         "https://datingapp-backend-pdji.onrender.com/signup",
+        `${BASE_URL}/signup`,
         {
           firstName,
           lastName,
@@ -57,11 +61,12 @@ const Login = () => {
         },
         {
           withCredentials: true,
-          headers: {
-          Authorization: `Bearer ${token}`,
-        }
         }
       );
+
+      // ✅ Save token to localStorage
+      localStorage.setItem("token", res.data.token);
+
       dispatch(addUser(res.data.data));
       navigate("/profile");
     } catch (error) {
@@ -144,8 +149,8 @@ const Login = () => {
             }}
           >
             {isLoginFrom
-              ? "New user ? signup here"
-              : "Existing User ? Login here"}
+              ? "New user? Signup here"
+              : "Existing user? Login here"}
           </p>
         </div>
       </div>
