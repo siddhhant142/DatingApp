@@ -27,10 +27,7 @@ const Requests = () => {
       const requests = await axios.get( "https://datingapp-backend-pdji.onrender.com/user/requests/recieved", {
         withCredentials: true,
 
-       
-    headers: {
-      Authorization: `Bearer ${yourToken}`
-    }
+    
 
       });
       dispatch(addRequests(requests.data.connectionRequests)); //updating store through addRequests function by requestSlice
