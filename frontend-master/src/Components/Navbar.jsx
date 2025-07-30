@@ -29,6 +29,8 @@ const Navbar = () => {
           Tinder 🔥
         </Link>
 
+        <p> Email id-Kholi@gmail.com, password- Kholi@123 or Email id-rapper@gmail.com, password- Rapper@123 </p>
+
         {user && (
           <div className="flex items-center gap-4">
             {/* Welcome Message */}
