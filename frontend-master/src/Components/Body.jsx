@@ -10,41 +10,39 @@ import { useEffect } from "react";
 const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((store) => store.user); // Get user from store
+  const user = useSelector((store) => store.user); //it gives information about store in user data
 
+
+  //  profile/view gives me information about loggedin user
   const fetchUser = async () => {
-    const token = localStorage.getItem("token"); // ✅ Get token from storage
-
-    if (!token) {
-      // ✅ No token means user not logged in → redirect
-      navigate("/login");
-      return;
-    }
-
     try {
-      const res = await axios.get(`${BASE_URL}/profile/view`, {
+      const user = await axios.get( "https://datingapp-backend-pdji.onrender.com/profile/view", {
+        withCredentials: true,
+
         headers: {
           Authorization: `Bearer ${token}`,
-        },
+        }
       });
-
-      dispatch(addUser(res.data)); // ✅ Store user in Redux
+      // console.log(user.data);
+      dispatch(addUser(user.data)); 
+      // addUser belongs to userSlice we are updating data of loggedin user in our store through userSlice
     } catch (err) {
-      console.log(err);
-      if (err.response?.status === 401) {
-        // ✅ Token is invalid or expired
-        localStorage.removeItem("token"); // Clear bad token
+      if (err.status == 401) {
         navigate("/login");
       }
+      console.log(err);
     }
   };
+
+
+  // earlier when we use to refresh page user use to log out but now even if we refresh the page user remains loggedin because of fetchuser function
+  // user will only logout if we remove the token or we click on logout section
 
   useEffect(() => {
     if (!user) {
       fetchUser();
     }
   }, []);
-
   return (
     <div>
       <Navbar />
